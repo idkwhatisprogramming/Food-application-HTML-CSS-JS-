@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Register</title>
+    <link rel="stylesheet" href="./Css/login.css" />
+    <link
+      rel="icon"
+      href="./Images/Restaurants/download.png"
+      type="image/icon type"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="loginbg">
+        <div class="box signin">
+          <h2>Already Have an Account ?</h2>
+          <button class="signinbtn">Sign in</button>
+        </div>
+        <div class="box signup">
+          <h2>Dont Have an Account ?</h2>
+          <button class="signupbtn">Sign up</button>
+        </div>
+      </div>
+      <div class="formbx">
+        <div class="form signinform">
+          <form>
+            <h2>Foodies</h2>
+            <h3>Sign In</h3>
+            <input type="email" id="email" placeholder="Enter Email" />
+            <input type="password" id="password" placeholder="Enter Password" />
+            <button type="button" onclick="Login()">Log In</button>
+
+            <a href="#" class="forgot">Forgot password?</a>
+          </form>
+        </div>
+        <div class="form signupform">
+          <form>
+            <h3>Sign up</h3>
+            <input type="text" id="name" placeholder="Enter Your Name" />
+            <input type="email" id="email" placeholder="Enter Email" />
+            <input type="password" id="password" placeholder="Enter Password" />
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm password"
+            />
+            <button type="submit" onclick="SignUp()">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const signinbtn = document.querySelector(".signinbtn");
+      const signupbtn = document.querySelector(".signupbtn");
+      const formbx = document.querySelector(".formbx");
+      const body = document.querySelector("body");
+
+      signupbtn.onclick = function () {
+        formbx.classList.add("active");
+        body.classList.add("active");
+      };
+      signinbtn.onclick = function () {
+        formbx.classList.remove("active");
+        body.classList.remove("active");
+      };
+
+      function SignUp() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+
+        alert("Registration successful!");
+      }
+      function Login() {
+        let userEmail = document.getElementById("email").value;
+        let userPassword = document.getElementById("password").value;
+
+        let email = localStorage.getItem("email");
+        let password = localStorage.getItem("password");
+
+        if (userEmail == "" || userPassword == "") {
+          alert("Please enter both username and password.");
+          return;
+        }
+
+        if (email == userEmail && password == userPassword) {
+          alert("Success");
+          window.location.href = "home.html";
+        } else {
+          alert("Please Enter Correct Email And password");
+        }
+      }
+    </script>
+  </body>
+</html>
